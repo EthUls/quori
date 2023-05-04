@@ -125,6 +125,10 @@ small {
     margin-right: 50px;
 }
 
+.ml-auto {
+    margin-left: auto;
+}
+
 /* Paddings */
 .p-5 {
     padding: 5px;
@@ -140,6 +144,10 @@ small {
 
 .pb-20 {
     padding-bottom: 20px;
+}
+
+.pb-30 {
+    padding-bottom: 30px;
 }
 
 .py-20 {
@@ -194,10 +202,16 @@ small {
     box-shadow:var(--box-shadow);
 }
 
+.avatar {
+    width: 80px;
+    border-radius: 50%;
+}
+
 .avatar-small {
     width: 45px;
     border-radius: 50%;
 }
+
 
 .clickable {
     color: var(--primary);
@@ -211,6 +225,11 @@ small {
 
 .rating-down {
     color: var(--warning);
+}
+
+.separator {
+    border-bottom: 1px solid var(--gray-light);
+    margin: 30px 0px;
 }
 
 /* Message Flash */
