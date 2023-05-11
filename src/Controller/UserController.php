@@ -15,17 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-    #[Route('/user/{id}', name: 'profile_user')]
-    #[IsGranted("IS_AUTHENTICATED_FULLY")]
-    public function userProfile(User $user): Response
-    {
-        $currentUser = $this->getUser();
-        if($currentUser === $user) {
-            return $this->redirectToRoute('current_user_profile');
-        }
-        return $this->render('user/show.html.twig');
-    }
-
     #[Route('/user', name: 'current_user_profile')]
     #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function currentUserProfile(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em): Response
@@ -54,4 +43,32 @@ class UserController extends AbstractController
             'form' => $profileForm->createView()
         ]);
     }
+
+    #[Route('/user/questions', name: 'show_questions')]
+    #[IsGranted("IS_AUTHENTICATED_FULLY")]
+    public function showQuestion() {
+        return $this->render('user/show_questions.html.twig');
+    }
+
+    #[Route('/user/comments', name: 'show_comments')]
+    #[IsGranted("IS_AUTHENTICATED_FULLY")]
+    public function showComments() {
+        return $this->render('user/show_comments.html.twig');
+    }
+
+    #[Route('/user/{id}', name: 'profile_user')]
+    #[IsGranted("IS_AUTHENTICATED_FULLY")]
+    public function userProfile(User $user): Response
+    {
+        $currentUser = $this->getUser();
+        if($currentUser === $user) {
+            return $this->redirectToRoute('current_user_profile');
+        }
+        return $this->render('user/show.html.twig');
+    }
+
+    
+
+    
+
 }
