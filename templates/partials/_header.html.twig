@@ -1,25 +1,25 @@
 <header class="d-flex flex-row-nowrap justify-content-center p-20">
     <div class="content flex-fill d-flex flex-row-nowrap align-items-center justify-content-between">
-        <a href="{{path('home')}}" class="header-logo">
+        <a class="header-logo" href="{{path('home')}}">
             <img src="{{asset('images/logo.png')}}" alt="Logo" >
         </a>
         <div class="header-search p-10 flex-fill">
             <i class="fa-solid fa-search"></i>
             <input type="text" name="" id="">
         </div>
-        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <div class="d-flex flex-row-nowrap align-items-center">
-                <a href="{{path('current_user_profile')}}">
+                <a href="{{ path('current_user_profile') }}">
                     <img src="{{app.user.image}}" alt="Profile User" class="avatar mr-10">
                 </a>
                 <small>
-                    <a href="{{ path('logout' )}}">Déconnexion</a>
+                    <a href="{{ path('logout') }}">Déconnexion</a>
                 </small>
             </div>
         {% else %}
             <div>
-                <a href="{{path('signup')}}" class="btn btn-primary mr-5">Inscription</a>
-                <a href="{{path('signin')}}" class="btn btn-primary-reverse">Connexion</a>
+                <a href="{{ path('signup') }}" class="btn btn-primary mr-5">Inscription</a>
+                <a href="{{ path('signin') }}" class="btn btn-primary-reverse">Connexion</a>
             </div>
         {% endif %}
     </div>

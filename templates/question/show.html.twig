@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
 {% block title %}
     {{question.title}}
@@ -6,18 +6,18 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{asset('css/question_show.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/question_show.css') }}">
 {% endblock stylesheets %}
 
 {% block body %}
     <div class="block">
         <div class="d-flex flex-row-nowrap align-items-center pb-30">
-            {% include "./partials/_rating.html.twig" with {rating: question.rating, from: 'question', id: question.id}%}
-            <div class="flex-fill">
+            {% include "./partials/_rating.html.twig" with { rating: question.rating, from: 'question', id: question.id } %}
+            <div class="d-flex flex-row-nowrap flex-fill">
                 <h3>{{ question.title }}</h3>
                 <div class="question-tag">QUESTION</div>
             </div>
-            <a href="{{path('profile_user', {id: question.author.id})}}">
+            <a href="{{ path('profile_user', {id: question.author.id}) }}">
                 <img src="{{question.author.image}}" alt="Avatar" class="avatar ml-auto">
             </a>
         </div>
