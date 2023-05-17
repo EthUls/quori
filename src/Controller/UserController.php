@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Services\UploadImageService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +18,7 @@ class UserController extends AbstractController
 {
     #[Route('/user', name: 'current_user_profile')]
     #[IsGranted("IS_AUTHENTICATED_REMEMBERED")]
-    public function currentUserProfil(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em): Response
+    public function currentUserProfil(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em, UploadImageService $uploaderPicture): Response
     {
         /**
          * @var User
@@ -39,6 +40,12 @@ class UserController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'Modifications des informations sauvegardées !');
         }
+
+            $picture = $profileForm->get('pictureFile')->getData();
+            if($picture) {
+                $currentUser->setImage($uploaderPicture->uploadProfileImage($picture, $currentUser->getImage()));
+
+            }
 
         return $this->render('user/profile.html.twig', [
             'form' => $profileForm->createView()

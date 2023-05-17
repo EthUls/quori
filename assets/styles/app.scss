@@ -254,15 +254,16 @@ small {
     padding: 20px;
     text-align: center;
     color: white;
+
+    &-success {
+        background-color: var(--success);
+    }
+
+    &-error {
+        background-color: var(--warning);
+    }
 }
 
-.flash-success {
-    background-color: var(--success);
-}
-
-.flash-error {
-    background-color: var(--warning);
-}
 
 /* GENERAL */
 

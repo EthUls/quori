@@ -6,8 +6,8 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/question_show.css') }}">
-{% endblock stylesheets %}
+    {{ encore_entry_link_tags('question') }}
+    {% endblock stylesheets %}
 
 {% block body %}
     <div class="block">
